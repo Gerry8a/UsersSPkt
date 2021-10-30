@@ -18,17 +18,35 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         inicializarcomponentes()
-
-
-
     }
 
     private fun getUsers() : MutableList<User>{
         val users = mutableListOf<User>()
-        val gerardo = User(1, "Gerardo", "Ochoa", "")
-        val ceci = User(2, "Ceci", "Ochoa", "")
+        val gerardo = User(1, "Gerardo", "Ochoa", "https://m.media-amazon.com/images/I/51RBBkCehdL._AC_SX425_.jpg")
+        val ceci = User(2, "Ceci", "Ochoa", "https://m.media-amazon.com/images/I/51RBBkCehdL._AC_SX425_.jpg")
+        var javier = User(3, "Javier", "Gomez", "https://m.media-amazon.com/images/I/51RBBkCehdL._AC_SX425_.jpg")
+        val pablo = User(4, "Pablo", "Cruz", "https://m.media-amazon.com/images/I/51RBBkCehdL._AC_SX425_.jpg")
+        val charly = User(5, "Charly", "Perez", "https://m.media-amazon.com/images/I/51RBBkCehdL._AC_SX425_.jpg")
         users.add(gerardo)
         users.add(ceci)
+        users.add(javier)
+        users.add(pablo)
+        users.add(charly)
+        users.add(gerardo)
+        users.add(ceci)
+        users.add(javier)
+        users.add(pablo)
+        users.add(charly)
+        users.add(gerardo)
+        users.add(ceci)
+        users.add(javier)
+        users.add(pablo)
+        users.add(charly)
+        users.add(gerardo)
+        users.add(ceci)
+        users.add(javier)
+        users.add(pablo)
+        users.add(charly)
 
         return users
     }
