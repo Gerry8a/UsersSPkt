@@ -5,4 +5,6 @@ data class User(
     var name: String,
     var lastName: String,
     var url: String
-)
+){
+    fun getFullName(): String = "$name $lastName"
+}
