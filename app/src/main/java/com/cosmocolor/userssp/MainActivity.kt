@@ -12,6 +12,7 @@ import com.cosmocolor.userssp.adapters.UserAdapter
 import com.cosmocolor.userssp.databinding.ActivityMainBinding
 import com.cosmocolor.userssp.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity(), OnClickListener {
 
@@ -27,17 +28,29 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
         val preferences = getPreferences(Context.MODE_PRIVATE)
         val isFirstTime = preferences.getBoolean(getString(R.string.sp_first_time), true)
-        Log.i("SPREFERENCES", "${getString(R.string.sp_first_time)}")
+        Log.d("SPREFERENCES", "${getString(R.string.sp_first_time)} = ${isFirstTime}")
 
         if (isFirstTime) {
+            val dialoView = layoutInflater.inflate(R.layout.dialog_register, null) //inflar la vista del diálogo
+
             MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.dialog_title)
+                .setView(dialoView)
+                .setCancelable(false)
                 .setPositiveButton(R.string.dialog_confirm, { dialogInterface, i ->
-                    preferences.edit().putBoolean(getString(R.string.sp_first_time), false).commit()
+                    val userName = dialoView.findViewById<TextInputEditText>(R.id.etUserName)
+                        .text.toString()
+                    with(preferences.edit()){
+                        putBoolean(getString(R.string.sp_first_time), false).commit()
+                        putString(getString(R.string.sp_username), userName)
+                            .apply()
+                    }
+                    Toast.makeText(this, R.string.register_success, Toast.LENGTH_SHORT).show()
                 })
-                .setNegativeButton(R.string.dialog_cancelar, null)
                 .show()
-
+        } else {
+            val username = preferences.getString(getString(R.string.sp_username), getString(R.string.hint_username))
+            Toast.makeText(this, "Bienvenido, $username", Toast.LENGTH_SHORT).show()
         }
     }
 
